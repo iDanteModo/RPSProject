@@ -63,16 +63,9 @@
             decision = alert("Computer WINS");
         } else if(result == choice){
             decision = alert("DRAW");
-            reset = true;
-        } else if (choice == 0 && result == 2){
-            decision = alert("YOU WIN");
-        } else if (choice == 1 && result == 0) {
-            decision = alert("YOU WIN");
-        } else if (choice == 2 && result == 1) {
-            decision = alert("YOU WIN");
-        }else {
-            decision = alert("NOT WORKING");
-        }
+        } else     
+            decision = alert("YOU WIN ");
+        
 
         
         return decision;
