@@ -11,12 +11,25 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 
+const scoreBoard = document.querySelector('#scoreBoard');
+const score = document.createElement('h6');
 
 
 
 
 
-let result, choice, repeat = true, display = 1;
+
+
+
+
+
+
+
+
+
+
+
+let result, choice, computerScore = 0, humanScore = 0;
 
 //Shows the welcome message with the button START 
 
@@ -63,8 +76,9 @@ function humanChoice() {
    
     
     okButton.addEventListener('click', () => { 
-        winner(result, choice);
         newDialog.close();
+        newDialog.remove();
+        winner(result, choice);
     })
 
 
@@ -102,14 +116,26 @@ function winner(result, choice) {
 
     if (result == 0 && choice == 2) {
         text.textContent = " COMPUTER WINS";
+        computerScore++;
     } else if (result == 1 && choice == 0){
         text.textContent = " COMPUTER WINS";
+        computerScore++;
     } else if (result == 2 && choice == 1){
         text.textContent = " COMPUTER WINS";
+        computerScore++;
     } else if(result == choice){
         text.textContent = "DRAW";
-    } else   
+    } else if(result == 2 && choice == 0){
         text.textContent = " YOU WIN";
+        humanScore++;
+    } else if(result == 0 && choice ==1) {
+        text.textContent = " YOU WIN";
+        humanScore++;
+    } else if(result == 1 && choice == 2 )  {
+        text.textContent = " YOU WIN";
+        humanScore++;
+    }
+        
     
     
     dialogNew.appendChild(text);
@@ -123,7 +149,9 @@ function winner(result, choice) {
     
     button.addEventListener('click', () => {
         dialogNew.close();
-        greet();
+        dialogNew.remove();
+        playGame();
+        
     } ) 
     
     button2.addEventListener('click', () => {
@@ -133,14 +161,19 @@ function winner(result, choice) {
 
     
 
-
 }
 
 function playGame(){
     greet();
     result= computerChoice();
     choice = humanChoice();
-    // playAgain();
+    score.textContent = `HUMAN SCORE ${humanScore}  ---  COMPUTER SCORE ${computerScore}`;
+    scoreBoard.appendChild(score);
+    
    
 }
+
 playGame();
+
+
+
